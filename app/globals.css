@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tema claro */
+:root {
+  --fundo: 243 245 249;
+  --superficie: 255 255 255;
+  --superficie2: 234 238 245;
+  --borda: 214 220 232;
+  --texto: 22 28 42;
+  --suave: 94 104 124;
+  --destaque: 146 98 14;
+  --destaque-texto: 255 255 255;
+  --perigo: 190 40 40;
+  --sucesso: 22 120 70;
+  color-scheme: light;
+}
+
+/* Tema escuro (padrão) */
+.dark {
+  --fundo: 15 20 32;
+  --superficie: 23 29 44;
+  --superficie2: 32 40 60;
+  --borda: 44 54 78;
+  --texto: 233 236 243;
+  --suave: 144 153 173;
+  --destaque: 255 177 14;
+  --destaque-texto: 22 31 96;
+  --perigo: 248 113 113;
+  --sucesso: 74 222 128;
+  color-scheme: dark;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-fundo text-texto font-sans antialiased; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-destaque; }
+  h1, h2, h3 { @apply font-titulo; }
+}
+
+@layer components {
+  .botao {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .botao-primario { @apply botao bg-destaque text-destaque-texto hover:opacity-90; }
+  .botao-secundario { @apply botao border border-borda bg-superficie text-texto hover:bg-superficie2; }
+  .botao-perigo { @apply botao border border-perigo/50 text-perigo hover:bg-perigo/10; }
+  .botao-pequeno { @apply min-h-[36px] px-3 text-xs; }
+  .campo {
+    @apply min-h-[44px] w-full rounded-lg border border-borda bg-superficie px-3 text-sm text-texto placeholder:text-suave;
+  }
+  .rotulo { @apply mb-1.5 block text-sm font-medium; }
+  .ajuda { @apply mt-1 text-xs text-suave; }
+  .selo { @apply inline-flex items-center rounded-full bg-superficie2 px-2.5 py-0.5 text-xs text-suave; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
